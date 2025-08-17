@@ -25,17 +25,35 @@
 			}
 			return c.name.toLowerCase().indexOf($filters.query.toLowerCase()) !== -1
 		})
-		.sort((a, b) => {
-			if($filters.orderBy === 'name') {
-				return $filters.order === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
-			} else if($filters.orderBy === 'tvl') {
-				const tvlA = $llamaChains.find(tvl => tvl.chainId === a.chainId)?.tvl ?? 0
-				const tvlB = $llamaChains.find(tvl => tvl.chainId === b.chainId)?.tvl ?? 0
-				return $filters.order === 'asc' ? tvlB - tvlA : tvlA - tvlB
-			} else {
-				return $filters.order === 'asc' ? a.chainId - b.chainId : b.chainId - a.chainId
-			}
-		})
+
+const priorityChainIds = [588785742, 1001, 43114, 43113];
+
+.sort((a, b) => {
+    if ($filters.orderBy === 'name') {
+        return $filters.order === 'asc'
+            ? a.name.localeCompare(b.name)
+            : b.name.localeCompare(a.name);
+    } else if ($filters.orderBy === 'tvl') {
+        const aPriority = priorityChainIds.indexOf(a.chainId);
+        const bPriority = priorityChainIds.indexOf(b.chainId);
+
+        if (aPriority !== -1 || bPriority !== -1) {
+            if (aPriority !== -1 && bPriority !== -1) {
+                return aPriority - bPriority;
+            }
+            return aPriority !== -1 ? -1 : 1;
+        }
+
+        const tvlA = $llamaChains.find(tvl => tvl.chainId === a.chainId)?.tvl ?? 0;
+        const tvlB = $llamaChains.find(tvl => tvl.chainId === b.chainId)?.tvl ?? 0;
+        return $filters.order === 'asc' ? tvlB - tvlA : tvlA - tvlB;
+    } else {
+        return $filters.order === 'asc'
+            ? a.chainId - b.chainId
+            : b.chainId - a.chainId;
+    }
+})
+
 	$: $resultsNumber = filteredChains.length
 </script>
 
