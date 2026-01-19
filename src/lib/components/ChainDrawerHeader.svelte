@@ -38,7 +38,7 @@
 {#if $currentChain}
 	<div class="sticky top-0 flex flex-wrap items-center gap-4 p-4 w-full bg-base-300">
 		<div class="icon">
-			<ChainLogo chainId={$currentChain.chainId} />
+			<ChainLogo chain={$currentChain} />
 		</div>
 		<div class="flex flex-col gap-2">
 			{#if $currentChain.testnet}

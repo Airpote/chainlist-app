@@ -1,14 +1,15 @@
 <script lang="ts">
 	import Lazy from 'svelte-lazy';
-	import { getIconUrl } from '@amichain/chainlist';
 	import ChainLogoPlaceHolder from "$lib/components/ChainLogoPlaceHolder.svelte";
 	import ChainLogoPreloader from "$lib/components/ChainLogoPreloader.svelte";
-	export let chainId: number;
+	import type { Chain } from '@amichain/chainlist';
+	import { onMount } from 'svelte';
+	export let chain: Chain;
 
 	let src;
 	let noImg = false
 	const loadImg = () => {
-		const iconUrl = getIconUrl(chainId)
+		const iconUrl = chain.icon && chain.icon.startsWith('http') ? chain.icon : chain.icon ? `https://cdn.jsdelivr.net/gh/Amichain/chain-icons/${chain.icon.split('.')[1]}/${chain.icon}` : null;
 		if(iconUrl) {
 			const img = new Image();
 			img.src = iconUrl
@@ -18,8 +19,14 @@
 			img.onerror = () => {
 				noImg = true
 			}
+		} else {
+			noImg = true
 		}
 	}
+
+	onMount(() => {
+		if (chain) loadImg();
+	});
 </script>
 
 {#if !noImg}
@@ -34,7 +41,7 @@
 		{#if src}
 			<img
 				{src}
-				alt="Chain #{chainId} icon"
+				alt="Chain #{chain.chainId} icon"
 				height="128px"
 				width="128px"
 			/>

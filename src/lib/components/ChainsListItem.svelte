@@ -9,7 +9,7 @@
 	<button class="chain-item" on:click={() => $currentChain = chain}>
 		<div class="icon">
 			{#key chain}
-				<ChainLogo chainId={chain.chainId} />
+				<ChainLogo {chain} />
 			{/key}
 		</div>
 		<div class="flex flex-col">

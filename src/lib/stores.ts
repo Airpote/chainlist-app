@@ -13,6 +13,7 @@ export const states = writable<{
 })
 export const currentChain = writable<Chain | null>(null)
 export const resultsNumber = writable(Object.values(allChains).length)
+export const additionalChains = writable<Chain[]>([])
 export const filters = writable<{
 	query: string;
 	testnet: boolean;
@@ -22,9 +23,9 @@ export const filters = writable<{
 	order: string;
 }>({
 	query: '',
-	testnet: false,
-	noExplorer: false,
-	noWebsite: false,
+	testnet: true,
+	noExplorer: true,
+	noWebsite: true,
 	orderBy: 'tvl',
 	order: 'asc',
 })
