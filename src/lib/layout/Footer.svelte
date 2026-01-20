@@ -91,7 +91,7 @@
 		<div class="title">Social links</div>
 		<ul>
 			<li>
-				<a href="https://x.com/amiavax" target="_blank">
+				<a href="https://x.com/amichainORG" target="_blank">
 					<XIcon />
 					<span>Twitter / X</span>
 				</a>
@@ -103,13 +103,13 @@
 				</a>
 			</li>
 			<li>
-				<a href="https://t.me/amiavax" target="_blank">
+				<a href="https://t.me/amichain" target="_blank">
 					<TelegramIcon />
 					<span>Telegram</span>
 				</a>
 			</li>
 			<li>
-				<a href="https://www.linkedin.com/company/amiavax" target="_blank">
+				<a href="https://www.linkedin.com/company/amichain" target="_blank">
 					<LinkedInIcon />
 					<span>LinkedIn</span>
 				</a>
