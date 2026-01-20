@@ -97,7 +97,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="https://discord.com/invite/zxkTcFEE4U" target="_blank">
+				<a href="https://discord.amichain.org/" target="_blank">
 					<DiscordIcon />
 					<span>Discord</span>
 				</a>
