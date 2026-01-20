@@ -1,12 +1,10 @@
-import 'unplugin-icons/types/svelte'
-import type { MetaMaskInpageProvider } from "@metamask/providers";
+import 'unplugin-icons/types/svelte';
+import type { MetaMaskInpageProvider } from '@metamask/providers';
 
 declare global {
-	namespace App {
-
-	}
+	namespace App {}
 	interface Window {
-		ethereum?: MetaMaskInpageProvider
+		ethereum?: MetaMaskInpageProvider;
 	}
 }
 

@@ -1,15 +1,15 @@
 <script lang="ts">
-	import {states} from "$lib/stores";
-	import SearchIcon from 'virtual:icons/hugeicons/search-01'
-	import CloseSearchIcon from 'virtual:icons/hugeicons/search-remove'
-	import HeaderSearchInput from "$lib/layout/HeaderSearchInput.svelte";
+	import { states } from '$lib/stores';
+	import SearchIcon from 'virtual:icons/hugeicons/search-01';
+	import CloseSearchIcon from 'virtual:icons/hugeicons/search-remove';
+	import HeaderSearchInput from '$lib/layout/HeaderSearchInput.svelte';
 
 	const toggleMobileSearch = () => {
-		$states.isMobileSearchOpen = !$states.isMobileSearchOpen
-	}
+		$states.isMobileSearchOpen = !$states.isMobileSearchOpen;
+	};
 </script>
 
-<button class="flex sm:hidden btn btn-circle btn-ghost ml-auto" on:click={toggleMobileSearch}>
+<button class="btn btn-circle btn-ghost ml-auto flex sm:hidden" on:click={toggleMobileSearch}>
 	{#if $states.isMobileSearchOpen}
 		<CloseSearchIcon class="text-2xl" />
 	{:else}

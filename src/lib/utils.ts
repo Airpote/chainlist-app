@@ -1,4 +1,4 @@
-import {filters} from "$lib/stores";
+import { filters } from '$lib/stores';
 
 export default {
 	resetFilters: () => {
@@ -9,6 +9,6 @@ export default {
 			noWebsite: false,
 			orderBy: 'name',
 			order: 'asc'
-		})
+		});
 	}
-}
+};

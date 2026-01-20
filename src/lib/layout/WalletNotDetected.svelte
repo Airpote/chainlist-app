@@ -1,9 +1,9 @@
 <script lang="ts">
-	import ExternalIcon from 'virtual:icons/hugeicons/link-square-01'
-	import WarningIcon from 'virtual:icons/hugeicons/alert-02'
-	import CloseIcon from 'virtual:icons/hugeicons/cancel-01'
+	import ExternalIcon from 'virtual:icons/hugeicons/link-square-01';
+	import WarningIcon from 'virtual:icons/hugeicons/alert-02';
+	import CloseIcon from 'virtual:icons/hugeicons/cancel-01';
 
-	let isClosed = false
+	let isClosed = false;
 </script>
 
 {#if typeof window !== 'undefined' && !window.ethereum && !isClosed}
@@ -18,7 +18,7 @@
 			<span>Install Core wallet</span>
 			<ExternalIcon />
 		</a>
-		<button class="absolute right-4 btn btn-circle" on:click={() => isClosed = true}>
+		<button class="btn btn-circle absolute right-4" on:click={() => (isClosed = true)}>
 			<CloseIcon />
 		</button>
 	</div>
@@ -26,11 +26,9 @@
 
 <style lang="postcss">
 	.wallet-not-detected-notice {
-		@apply sticky bottom-0 z-50
-		flex items-center justify-center gap-2
-		w-full text-white font-medium p-2 bg-error;
+		@apply sticky bottom-0 z-50 flex w-full items-center justify-center gap-2 bg-error p-2 font-medium text-white;
 	}
 	.btn {
-		@apply btn-xs btn-neutral text-white;
+		@apply btn-neutral btn-xs text-white;
 	}
 </style>

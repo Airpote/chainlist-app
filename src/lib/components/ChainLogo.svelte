@@ -1,28 +1,33 @@
 <script lang="ts">
 	import Lazy from 'svelte-lazy';
-	import ChainLogoPlaceHolder from "$lib/components/ChainLogoPlaceHolder.svelte";
-	import ChainLogoPreloader from "$lib/components/ChainLogoPreloader.svelte";
+	import ChainLogoPlaceHolder from '$lib/components/ChainLogoPlaceHolder.svelte';
+	import ChainLogoPreloader from '$lib/components/ChainLogoPreloader.svelte';
 	import type { Chain } from '@amichain/chainlist';
 	import { onMount } from 'svelte';
 	export let chain: Chain;
 
 	let src;
-	let noImg = false
+	let noImg = false;
 	const loadImg = () => {
-		const iconUrl = chain.icon && chain.icon.startsWith('http') ? chain.icon : chain.icon ? `https://cdn.jsdelivr.net/gh/Amichain/chain-icons/${chain.icon.split('.')[1]}/${chain.icon}` : null;
-		if(iconUrl) {
+		const iconUrl =
+			chain.icon && chain.icon.startsWith('http')
+				? chain.icon
+				: chain.icon
+					? `https://cdn.jsdelivr.net/gh/Amichain/chain-icons/${chain.icon.split('.')[1]}/${chain.icon}`
+					: null;
+		if (iconUrl) {
 			const img = new Image();
-			img.src = iconUrl
+			img.src = iconUrl;
 			img.onload = () => {
-				src = img.src
-			}
+				src = img.src;
+			};
 			img.onerror = () => {
-				noImg = true
-			}
+				noImg = true;
+			};
 		} else {
-			noImg = true
+			noImg = true;
 		}
-	}
+	};
 
 	onMount(() => {
 		if (chain) loadImg();
@@ -39,12 +44,7 @@
 		onload={loadImg}
 	>
 		{#if src}
-			<img
-				{src}
-				alt="Chain #{chain.chainId} icon"
-				height="128px"
-				width="128px"
-			/>
+			<img {src} alt="Chain #{chain.chainId} icon" height="128px" width="128px" />
 		{:else}
 			<ChainLogoPlaceHolder />
 		{/if}

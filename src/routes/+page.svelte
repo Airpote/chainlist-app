@@ -7,15 +7,25 @@
 
 	onMount(() => {
 		fetch('https://raw.githubusercontent.com/ava-labs/builders-hub/master/constants/l1-chains.json')
-			.then(r => r.json())
-			.then(data => {
+			.then((r) => r.json())
+			.then((data) => {
 				const normalized = data.map((chain: any) => ({
 					chainId: chain.chainId,
 					name: chain.chainName || 'Unknown',
 					rpc: chain.rpcUrl ? [chain.rpcUrl] : [],
 					ws: [],
-					explorers: chain.explorers ? chain.explorers.map((e: any) => ({ name: e.name, url: e.link || e.url, standard: 'EIP3091' })) : [],
-					nativeCurrency: { name: chain.tokenSymbol || 'Unknown', symbol: chain.tokenSymbol || 'UNK', decimals: 18 },
+					explorers: chain.explorers
+						? chain.explorers.map((e: any) => ({
+								name: e.name,
+								url: e.link || e.url,
+								standard: 'EIP3091'
+							}))
+						: [],
+					nativeCurrency: {
+						name: chain.tokenSymbol || 'Unknown',
+						symbol: chain.tokenSymbol || 'UNK',
+						decimals: 18
+					},
 					website: chain.website,
 					icon: chain.chainLogoURI,
 					testnet: false,
@@ -28,7 +38,9 @@
 					name: 'MartianChain',
 					rpc: ['https://martian-rpc1.amichain.org/'],
 					ws: [],
-					explorers: [{ name: 'MartianScan', url: 'http://explorer.martianchain.com/', standard: 'EIP3091' }],
+					explorers: [
+						{ name: 'MartianScan', url: 'http://explorer.martianchain.com/', standard: 'EIP3091' }
+					],
 					nativeCurrency: { name: 'Erol', symbol: 'EROL', decimals: 18 },
 					website: 'https://martianchain.com',
 					icon: 'https://martianchain.com/martian.png',

@@ -1,29 +1,29 @@
 <script lang="ts">
-	import Logo from "$lib/layout/Logo.svelte";
-	import AmiChainLogo from "$lib/logos/AmiChainLogo.svelte";
-	import AmiChainMonoLogo from "$lib/logos/AmiChainMonoLogo.svelte";
-	import GithubIcon from 'virtual:icons/hugeicons/github'
-	import AddIcon from 'virtual:icons/hugeicons/plus-sign'
-	import DocIcon from 'virtual:icons/hugeicons/doc-02'
-	import ApiIcon from 'virtual:icons/hugeicons/api'
-	import IconIcon from 'virtual:icons/hugeicons/ico'
-	import XIcon from 'virtual:icons/hugeicons/new-twitter-rectangle'
-	import LinkedInIcon from 'virtual:icons/hugeicons/linkedin-01'
-	import DiscordIcon from 'virtual:icons/hugeicons/discord'
-	import TelegramIcon from 'virtual:icons/hugeicons/telegram'
+	import Logo from '$lib/layout/Logo.svelte';
+	import AmiChainLogo from '$lib/logos/AmiChainLogo.svelte';
+	import AmiChainMonoLogo from '$lib/logos/AmiChainMonoLogo.svelte';
+	import GithubIcon from 'virtual:icons/hugeicons/github';
+	import AddIcon from 'virtual:icons/hugeicons/plus-sign';
+	import DocIcon from 'virtual:icons/hugeicons/doc-02';
+	import ApiIcon from 'virtual:icons/hugeicons/api';
+	import IconIcon from 'virtual:icons/hugeicons/ico';
+	import XIcon from 'virtual:icons/hugeicons/new-twitter-rectangle';
+	import LinkedInIcon from 'virtual:icons/hugeicons/linkedin-01';
+	import DiscordIcon from 'virtual:icons/hugeicons/discord';
+	import TelegramIcon from 'virtual:icons/hugeicons/telegram';
 </script>
 
 <div class="main-footer">
 	<div class="col gap-4">
 		<div class="flex flex-col">
-			<a href="/" class="flex items-center gap-2 text-2xl font-bold mr-auto">
+			<a href="/" class="mr-auto flex items-center gap-2 text-2xl font-bold">
 				<Logo />
 				<span>Chainlist</span>
 			</a>
 			<a
 				href="https://amichain.org"
 				target="_blank"
-				class="inline-flex items-center gap-1 text-lg font-medium ml-16"
+				class="ml-16 inline-flex items-center gap-1 text-lg font-medium"
 			>
 				<span>By</span>
 				<AmiChainLogo height="22" width="22" />
@@ -120,19 +120,18 @@
 
 <style lang="postcss">
 	.main-footer {
-		@apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8
-		border-t border-base-content/10 bg-base-200;
+		@apply grid grid-cols-1 gap-8 border-t border-base-content/10 bg-base-200 sm:grid-cols-2 lg:grid-cols-4;
 		padding-left: calc((100% - 1520px) / 2);
 		padding-right: calc((100% - 1520px) / 2);
 	}
 	.main-footer .col {
-		@apply flex flex-col py-4 lg:py-8 px-16 lg:px-4;
+		@apply flex flex-col px-16 py-4 lg:px-4 lg:py-8;
 	}
 	.main-footer .col .title {
 		@apply text-xl font-medium;
 	}
 	.main-footer .col ul {
-		@apply flex flex-col gap-1 py-2 mr-auto;
+		@apply mr-auto flex flex-col gap-1 py-2;
 	}
 	.main-footer .col li {
 		@apply text-base font-medium;
@@ -144,7 +143,7 @@
 		@apply link;
 	}
 	.main-footer .col a.btn {
-		@apply btn-sm btn-outline rounded-full mr-auto mb-2;
+		@apply btn-outline btn-sm mb-2 mr-auto rounded-full;
 	}
 	:global(.main-footer .col a svg) {
 		@apply text-xl;
