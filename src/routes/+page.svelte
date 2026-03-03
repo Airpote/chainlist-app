@@ -57,6 +57,27 @@
 					isActive: true
 				};
 				normalized.push(martianChain);
+
+				// Add CodeNekt
+				const codeNektChain: Chain = {
+					chainId: 235235,
+					name: 'CodeNekt',
+					rpc: ['https://rpc1.codenekt-ecosystem.io/'],
+					ws: [],
+					explorers: [],
+					nativeCurrency: { name: 'CDK', symbol: 'CDK', decimals: 18 },
+					website: 'https://codenekt-ecosystem.io',
+					icon: 'https://staking.codenekt-ecosystem.io/logo.png',
+					testnet: false,
+					faucets: [],
+					slug: 'codenekt',
+					color: '#000000',
+					category: 'General',
+					description: 'CodeNekt is a decentralized blockchain. CodeNekt uses CDK as native token.',
+					chainLogoURI: 'https://staking.codenekt-ecosystem.io/logo.png',
+					isActive: true
+				};
+				normalized.push(codeNektChain);
 				additionalChains.set(normalized);
 			});
 	});
