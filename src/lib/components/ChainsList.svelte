@@ -30,6 +30,8 @@
 			if (b.chainId === 43114) return 1;
 			if (a.chainId === 2027) return -1;
 			if (b.chainId === 2027) return 1;
+			if (a.chainId === 235235) return -1;
+			if (b.chainId === 235235) return 1;
 			if ($filters.orderBy === 'name') {
 				return $filters.order === 'asc'
 					? a.name.localeCompare(b.name)
