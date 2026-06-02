@@ -7,7 +7,7 @@ export const states = writable<{
 	loadingTvls: boolean;
 	isFiltersOpen: boolean;
 }>({
-	loadingTvls: true,
+	loadingTvls: false,
 	isMobileSearchOpen: false,
 	isFiltersOpen: false
 });

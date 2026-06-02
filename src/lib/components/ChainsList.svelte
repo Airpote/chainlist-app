@@ -1,10 +1,9 @@
 <script lang="ts">
 	import type { Chain } from '@amichain/chainlist';
 	import { chains } from '@amichain/chainlist';
-	import { filters, llamaChains, resultsNumber, states, additionalChains } from '$lib/stores';
+	import { filters, llamaChains, resultsNumber, additionalChains } from '$lib/stores';
 	import ChainsListItem from '$lib/components/ChainsListItem.svelte';
 	import ChainsListNoResults from '$lib/components/ChainsListNoResults.svelte';
-	import ChainListPreloader from '$lib/components/ChainListPreloader.svelte';
 
 	$: allChains = [...Object.values(chains), ...$additionalChains].filter(
 		(c, i, arr) => arr.findIndex((cc) => cc.chainId === c.chainId) === i
@@ -51,17 +50,13 @@
 	<span>{$resultsNumber} / {allChains.length} chain{$resultsNumber > 1 ? 's' : ''} found</span>
 </div>
 <div class="chain-list">
-	{#if $states.loadingTvls}
-		<ChainListPreloader />
+	{#each filteredChains as chain}
+		{#if chain}
+			<ChainsListItem {chain} />
+		{/if}
 	{:else}
-		{#each filteredChains as chain}
-			{#if chain}
-				<ChainsListItem {chain} />
-			{/if}
-		{:else}
-			<ChainsListNoResults />
-		{/each}
-	{/if}
+		<ChainsListNoResults />
+	{/each}
 </div>
 
 <style lang="postcss">

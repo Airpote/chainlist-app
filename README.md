@@ -1,38 +1,59 @@
-# sv
+# ChainList App
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Static, serverless ChainList UI for [chainlist.amichain.org](https://chainlist.amichain.org/). Chain metadata ships in the browser bundle via [`@amichain/chainlist`](https://www.npmjs.com/package/@amichain/chainlist); no custom backend is required for the website.
 
-## Creating a project
+Optional TVL sorting loads from [DefiLlama](https://defillama.com/) in the browser. If that request fails or is blocked, the full chain list still renders.
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Development
 
 ```bash
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
+## Build
 
 ```bash
 npm run build
+npm run preview
 ```
 
-You can preview the production build with `npm run preview`.
+Output is written to `build/` and can be served by any static host (GitHub Pages, Cloudflare Pages, Netlify, Vercel static, nginx, etc.).
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+For GitHub project pages (`https://<user>.github.io/<repo>/`), set the base path when building:
+
+```bash
+BASE_PATH=/chainlist-app npm run build
+```
+
+## Deploy
+
+### GitHub Pages
+
+Push to `main`. The [Deploy static site](.github/workflows/deploy-pages.yml) workflow builds and publishes `build/` to GitHub Pages. Enable Pages for this repo (Settings → Pages → GitHub Actions).
+
+### Vercel / other static hosts
+
+- **Build command:** `npm run build`
+- **Output directory:** `build`
+- **Install command:** `npm ci`
+
+No server, environment variables, or API proxy are needed for chain data.
+
+## Architecture
+
+| Data | Source |
+|------|--------|
+| Chains (RPC, explorers, etc.) | `@amichain/chainlist` npm package (bundled at build time) |
+| Extra L1 subnets | `ava-labs/builders-hub` JSON on GitHub |
+| TVL (optional) | `https://api.llama.fi/v2/chains` (client-side) |
+| Icons | Chain `icon` URL or [Amichain/chain-icons](https://github.com/amichain/chain-icons) on jsDelivr |
+
+The legacy `chainlist-api` Express service on a VPS only mirrored the npm package for REST clients; this app does not call it.
+
+## Scripts
+
+- `npm run dev` — development server
+- `npm run build` — production static build
+- `npm run preview` — preview production build
+- `npm run check` — TypeScript / Svelte checks

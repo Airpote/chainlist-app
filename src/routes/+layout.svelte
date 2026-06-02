@@ -10,12 +10,20 @@
 
 	onMount(async () => {
 		$currentChain = null;
+		$states.loadingTvls = true;
 		try {
-			$llamaChains = await fetch('https://api.llama.fi/v2/chains').then((res) => res.json());
-		} catch (e) {
-			/**/
+			const controller = new AbortController();
+			const timeout = setTimeout(() => controller.abort(), 10_000);
+			const res = await fetch('https://api.llama.fi/v2/chains', { signal: controller.signal });
+			clearTimeout(timeout);
+			if (res.ok) {
+				$llamaChains = await res.json();
+			}
+		} catch {
+			// TVL is optional; chains are bundled via @amichain/chainlist
+		} finally {
+			$states.loadingTvls = false;
 		}
-		$states.loadingTvls = false;
 	});
 </script>
 
