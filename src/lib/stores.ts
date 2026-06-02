@@ -1,5 +1,4 @@
 import type { Chain } from '@amichain/chainlist';
-import { chains as allChains } from '@amichain/chainlist';
 import { writable } from 'svelte/store';
 
 export const states = writable<{
@@ -12,7 +11,14 @@ export const states = writable<{
 	isFiltersOpen: false
 });
 export const currentChain = writable<Chain | null>(null);
-export const resultsNumber = writable(Object.values(allChains).length);
+export const resultsNumber = writable(0);
+export const pagination = writable<{
+	page: number;
+	pageSize: number | 'all';
+}>({
+	page: 1,
+	pageSize: 10
+});
 export const additionalChains = writable<Chain[]>([]);
 export const filters = writable<{
 	query: string;

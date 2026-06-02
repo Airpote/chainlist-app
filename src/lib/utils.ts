@@ -1,4 +1,4 @@
-import { filters } from '$lib/stores';
+import { filters, pagination } from '$lib/stores';
 
 export default {
 	resetFilters: () => {
@@ -10,5 +10,6 @@ export default {
 			orderBy: 'name',
 			order: 'asc'
 		});
+		pagination.set({ page: 1, pageSize: 10 });
 	}
 };

@@ -5,6 +5,7 @@
 	import type { Chain } from '@amichain/chainlist';
 	import { onMount } from 'svelte';
 	export let chain: Chain;
+	export let size = 128;
 
 	let src;
 	let noImg = false;
@@ -37,30 +38,32 @@
 {#if !noImg}
 	<Lazy
 		placeholder={ChainLogoPreloader}
-		height="128px"
-		width="128px"
+		placeholderProps={{ size }}
+		height="{size}px"
+		width="{size}px"
 		keep={true}
 		fade={{ delay: 0, duration: 200 }}
 		onload={loadImg}
 	>
 		{#if src}
-			<img {src} alt="Chain #{chain.chainId} icon" height="128px" width="128px" />
+			<img
+				{src}
+				alt="Chain #{chain.chainId} icon"
+				height={size}
+				width={size}
+				loading="lazy"
+				decoding="async"
+			/>
 		{:else}
-			<ChainLogoPlaceHolder />
+			<ChainLogoPlaceHolder {size} />
 		{/if}
 	</Lazy>
 {:else}
-	<ChainLogoPlaceHolder />
+	<ChainLogoPlaceHolder {size} />
 {/if}
 
 <style lang="postcss">
-	:global(.svelte-lazy-placeholder svg) {
-		height: 128px;
-		width: 128px;
-	}
 	:global(.svelte-lazy-content img) {
 		@apply object-contain;
-		height: 128px;
-		width: 128px;
 	}
 </style>

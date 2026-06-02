@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { filters, states } from '$lib/stores';
+	import { filters, pagination, states } from '$lib/stores';
 	import utils from '$lib/utils';
 	import FilterIcon from 'virtual:icons/hugeicons/filter';
 	import ChevronDownIcon from 'virtual:icons/hugeicons/arrow-down-01';
@@ -49,6 +49,25 @@
 					<label class="label">
 						<span class="label-text">Include chains without website</span>
 						<input type="checkbox" class="toggle" bind:checked={$filters.noWebsite} />
+					</label>
+					<label class="form-control w-full flex-row items-center justify-between p-1">
+						<span class="label-text">Chains per page</span>
+						<select
+							class="input select select-bordered select-sm"
+							value={String($pagination.pageSize)}
+							on:change={(event) => {
+								const value = event.currentTarget.value;
+								pagination.set({
+									page: 1,
+									pageSize: value === 'all' ? 'all' : Number(value)
+								});
+							}}
+						>
+							<option value="10">10</option>
+							<option value="100">100</option>
+							<option value="1000">1000</option>
+							<option value="all">All</option>
+						</select>
 					</label>
 					<label class="form-control w-full flex-row items-center justify-between p-1">
 						<span class="label-text">Order by</span>

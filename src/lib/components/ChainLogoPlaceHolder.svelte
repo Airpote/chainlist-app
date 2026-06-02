@@ -1,7 +1,9 @@
 <script lang="ts">
 	import NoIcon from 'virtual:icons/hugeicons/help-circle';
+
+	export let size = 128;
 </script>
 
-<div class="flex h-[128px] w-[128px] items-center justify-center">
-	<NoIcon height="128" width="128" class="opacity-50" />
+<div class="flex items-center justify-center" style:width="{size}px" style:height="{size}px">
+	<NoIcon height={size} width={size} class="opacity-50" />
 </div>

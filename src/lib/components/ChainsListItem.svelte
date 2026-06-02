@@ -8,9 +8,7 @@
 {#if chain}
 	<button class="chain-item" on:click={() => ($currentChain = chain)}>
 		<div class="icon">
-			{#key chain}
-				<ChainLogo {chain} />
-			{/key}
+			<ChainLogo {chain} size={64} />
 		</div>
 		<div class="flex flex-col">
 			<span class="name">{chain.name}</span>
